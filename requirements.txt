@@ -1,0 +1,5 @@
+feedparser
+pyjstat
+pandas
+requests
+ipython
