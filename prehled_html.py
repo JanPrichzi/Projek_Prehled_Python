@@ -2,9 +2,18 @@ import json
 from IPython.display import HTML, display
 
 
-def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duvery, kurzy_dict, vychozi_mena="EUR"):
+def vykresli_html_prehled(
+    skore_zprav,
+    detaily_clanku,
+    index_duvery,
+    obdobi_duvery,
+    kurzy_dict,
+    vychozi_mena="EUR",
+    zakladni_skore=0.0,
+):
     data_payload = {
         "skoreZprav": round(float(skore_zprav), 2),
+        "zakladniSkore": round(float(zakladni_skore), 2),
         "clanky": detaily_clanku,
         "indexDuvery": index_duvery,
         "obdobiDuvery": obdobi_duvery or "",
@@ -130,11 +139,18 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
         .top-row.expanded .articles-panel {{
           display: block;
         }}
+        .articles-header-row {{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 10px;
+        }}
         .articles-header-title {{
           font-size: 18px;
           font-weight: 800;
           color: #000000;
-          margin-bottom: 10px;
+          margin-bottom: 0;
         }}
         .article-item {{
           display: flex;
@@ -268,7 +284,10 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
           </div>
 
           <div id="articles-panel-6" class="articles-panel">
-            <div class="articles-header-title">DETAILNÍ ROZEPSÁNÍ ČLÁNKŮ</div>
+            <div class="articles-header-row">
+              <div class="articles-header-title">DETAILNÍ ROZEPSÁNÍ ČLÁNKŮ</div>
+              <span id="base-score-6" class="article-score">Základní skóre: 0</span>
+            </div>
             <div id="articles-list-6"></div>
             <div class="articles-source-row">
               Zdroj: <a href="https://ct24.ceskatelevize.cz" target="_blank" rel="noopener noreferrer">https://ct24.ceskatelevize.cz</a>
@@ -385,6 +404,9 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
             emojiEl.textContent = "😐";
           }}
 
+          const baseScoreFormatted = Number(PAYLOAD_6.zakladniSkore ?? 0).toLocaleString("cs-CZ", {{ maximumFractionDigits: 2 }});
+          document.getElementById("base-score-6").textContent = `Základní skóre: ${{baseScoreFormatted}}`;
+
           const listEl = document.getElementById("articles-list-6");
           listEl.innerHTML = "";
           (PAYLOAD_6.clanky || []).forEach((cl) => {{
@@ -410,7 +432,6 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
             csuEl.textContent = "N/A";
           }}
           csuCommentEl.textContent = komentarDuvery6(csuVal);
-
           csuPeriodEl.textContent = csuPeriod ? `${{csuPeriod}}` : "";
 
           const selectEl = document.getElementById("currency-select-6");
