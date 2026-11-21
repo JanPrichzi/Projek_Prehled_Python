@@ -1,8 +1,15 @@
 import json
-from IPython.display import HTML, display
 
 
-def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duvery, kurzy_dict, vychozi_mena="EUR"):
+def vykresli_html_prehled(
+    skore_zprav,
+    detaily_clanku,
+    index_duvery,
+    obdobi_duvery,
+    kurzy_dict,
+    vychozi_mena="EUR",
+    vystupni_soubor="index.html",
+):
     data_payload = {
         "skoreZprav": round(float(skore_zprav), 2),
         "clanky": detaily_clanku,
@@ -410,7 +417,6 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
             csuEl.textContent = "N/A";
           }}
           csuCommentEl.textContent = komentarDuvery6(csuVal);
-
           csuPeriodEl.textContent = csuPeriod ? `${{csuPeriod}}` : "";
 
           const selectEl = document.getElementById("currency-select-6");
@@ -454,4 +460,37 @@ def vykresli_html_prehled(skore_zprav, detaily_clanku, index_duvery, obdobi_duve
       </script>
     </div>
     """
-    display(HTML(html_code))
+
+    # 1. Uložení jako samostatná HTML stránka (pro GitHub Pages / iframe)
+    if vystupni_soubor:
+        plna_stranka = f"""<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Přehled nálady a kurzů</title>
+  <style>
+    body {{
+      margin: 0;
+      padding: 8px;
+      background: transparent;
+    }}
+  </style>
+</head>
+<body>
+{html_code}
+</body>
+</html>
+"""
+        with open(vystupni_soubor, "w", encoding="utf-8") as f:
+            f.write(plna_stranka)
+        print(f"✅ HTML přehled uložen do souboru: {vystupni_soubor}")
+
+    # 2. Zobrazení v notebooku (pokud běží v Colabu / Jupyteru)
+    try:
+        from IPython import get_ipython
+        if get_ipython() is not None:
+            from IPython.display import HTML, display
+            display(HTML(html_code))
+    except ImportError:
+        pass
