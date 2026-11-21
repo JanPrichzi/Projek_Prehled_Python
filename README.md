@@ -29,6 +29,8 @@ requests:   2.32.4
 pandas:     2.2.3
 pyjstat:    2.4.0
 ipython:    7.34.0
+re:         2.2.1
+json:       2.0.9
 python:     3.13.18
 
 ## Spuštění v Google Colabu
