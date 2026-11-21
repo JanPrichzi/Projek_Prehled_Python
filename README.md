@@ -1,4 +1,4 @@
-# Přehled nálady ve společnosti, důvěry a kurzů ČNB
+# Přehled zpráv, důvěry a kurzů ČNB
 
 Python projekt, který na jednom místě propojuje aktuální mediální sentiment, makroekonomickou důvěru a kurzový vývoj koruny. Výstup zobrazuje jak v konzoli, tak formou interaktivního HTML přehledu v notebookovém prostředí (Google Colab).
 
