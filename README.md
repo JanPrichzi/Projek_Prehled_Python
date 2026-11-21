@@ -22,16 +22,20 @@ Python projekt, který na jednom místě propojuje aktuální mediální sentime
 | `slova.csv` | Tabulka klíčových slov rozdělených do sloupců podle vah (oddělovač `;`). |
 | `requirements.txt` | Seznam potřebných Python knihoven. |
 
-# Verze na kterých skript fungoval
+## Ověřené verze prostředí
 
-feedparser: 6.0.14
-requests:   2.32.4
-pandas:     2.2.3
-pyjstat:    2.4.0
-ipython:    7.34.0
-re:         2.2.1
-json:       2.0.9
-python:     3.13.18
+Skript byl otestován a ověřen v následujícím prostředí (Google Colab):
+
+| Prostředí / Knihovna | Verze | Poznámka |
+| :--- | :--- | :--- |
+| **Python** | `3.13.18` | Jazykové prostředí |
+| **feedparser** | `6.0.14` | Externí knihovna, pro stahování RSS zpráv z ČT24 |
+| **requests** | `2.32.4` | Externí knihovna, pro komunikaci s API  |
+| **pandas** | `2.2.3` | Externí knihovna, pro práci s tabulkami (filtrování, hledání řádků) |
+| **pyjstat** | `2.4.0` | Externí knihovna, pro rozluštění složitého statistického formátu JSON-stat od ČSÚ |
+| **IPython** | `7.34.0` | Součást Colabu / Jupyteru, pro vykreslení interaktivního HTML v notebooku |
+| **re** | `2.2.1` | Standardní modul Pythonu, pro hledání celých samostatných slov (nebo sousloví) |
+| **json** | `2.0.9` | Standardní modul Pythonu, který umožňuje vašemu kódu analyzovat a serializovat data JSON (JavaScript Object Notation). |
 
 ## Spuštění v Google Colabu
 
