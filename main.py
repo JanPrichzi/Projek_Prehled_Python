@@ -22,7 +22,6 @@ ZAKLADNI_SKORE = 2.0  # Korekce negativity zpráv – mění se pouze zde
 print("VERZE KNIHOVEN:")
 print("-" * 60)
 print(f"Python:     {sys.version.split()[0]}")
-print(f"IPython: {IPython.__version__}")
 print(f"feedparser: {getattr(feedparser, '__version__', 'není dostupná')}")
 print(f"requests:   {requests.__version__}")
 print(f"pandas:     {pd.__version__}")
