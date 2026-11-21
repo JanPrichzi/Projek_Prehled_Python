@@ -44,7 +44,7 @@ Otevřete nový notebook na [colab.research.google.com](https://colab.research.g
 ```python
 %cd /content
 !rm -rf Projek_Prehled_Python
-!git clone [https://github.com/JanPrichzi/Projek_Prehled_Python.git](https://github.com/JanPrichzi/Projek_Prehled_Python.git)
+!git clone https://github.com/JanPrichzi/Projek_Prehled_Python.git
 %cd Projek_Prehled_Python
 !pip install -q -r requirements.txt
 %run main.py
