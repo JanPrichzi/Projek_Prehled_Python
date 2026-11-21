@@ -17,7 +17,7 @@ Python projekt, který na jednom místě propojuje aktuální mediální sentime
 | `sentiment.py` | Načítání slovníku z CSV (se zálohou na výchozí slovník), hledání celých slov přes `re` a skórování titulků. |
 | `zpravy.py` | Stažení RSS zpráv z ČT24 a jejich ohodnocení. |
 | `csu.py` | Komunikace s API ČSÚ a extrakce nejnovějšího Souhrnného indikátoru důvěry. |
-| `kurzy_cnb.py` | Stažení denních a ročních kurzů ČNB, výpočet MA90 a odchylky. |
+| `kurzy_cnb.py` | Stažení denních a ročních kurzů ČNB, výpočet 90denního průměru a odchylky. |
 | `prehled_html.py` | Vygenerování a vykreslení interaktivního HTML/JS přehledu přes `IPython.display`. |
 | `slova.csv` | Tabulka klíčových slov rozdělených do sloupců podle vah (oddělovač `;`). |
 | `requirements.txt` | Seznam potřebných Python knihoven. |
