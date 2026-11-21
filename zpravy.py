@@ -2,19 +2,24 @@ import feedparser
 from sentiment import VYCHOZI_SLOVNIK_SENTIMENTU, zhodnot_titulek
 
 
-def stahni_zpravy(vrat_detaily=False, slovnik_podle_vahy=VYCHOZI_SLOVNIK_SENTIMENTU):
+def stahni_zpravy(
+    vrat_detaily=False,
+    slovnik_podle_vahy=VYCHOZI_SLOVNIK_SENTIMENTU,
+    zakladni_skore=2.0, # Lze změnit základní váha jelikož zprávy mají převážně negativní charakter
+):
     """
     Stáhne aktuální zprávy z ČT24, ohodnotí je pomocí funkce z modulu sentiment
     a vrátí celkové skóre (případně i seznam detailů článků pro HTML výstup).
+    Výchozí skóre začíná na hodnotě zakladni_skore (korekce negativity zpráv).
     """
     rss_url = "https://ct24.ceskatelevize.cz/rss/hlavni-zpravy"
     feed = feedparser.parse(rss_url)
 
-    celkove_skore_zprav = 0.0
+    celkove_skore_zprav = float(zakladni_skore)
     pocet_clanku = 10  # Kolik nejnovějších zpráv chceme hodnotit
     detaily_clanku = []
 
-    print("DNEŠNÍ HLAVNÍ ZPRÁVY:")
+    print(f"DNEŠNÍ HLAVNÍ ZPRÁVY (základní korekce: +{zakladni_skore:g}):")
     print("-" * 60)
 
     for clanek in feed.entries[:pocet_clanku]:
