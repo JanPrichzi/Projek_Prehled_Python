@@ -55,7 +55,7 @@ Po spuštění se v konzoli vypíše načtený slovník, jednotlivé zprávy i s
 ## Lokální spuštění
 
 ```bash
-git clone [https://github.com/JanPrichzi/Projek_Prehled_Python.git](https://github.com/JanPrichzi/Projek_Prehled_Python.git)
+git clone https://github.com/JanPrichzi/Projek_Prehled_Python.git
 cd Projek_Prehled_Python
 pip install -r requirements.txt
 python main.py
