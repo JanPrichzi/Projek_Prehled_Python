@@ -12,27 +12,37 @@ from csu import ziskej_indikator_duvery_csu_presne
 from kurzy_cnb import nacti_kurzy_vsechny_meny_cnb
 from prehled_html import vykresli_html_prehled
 
+# ==========================================
+# NASTAVENÍ PROJEKTU (VŠE NA JEDNOM MÍSTĚ)
+# ==========================================
+CSV_SLOVA_ZDROJ = "https://raw.githubusercontent.com/JanPrichzi/Projek_Prehled_Python/main/slova.csv"
+ZAKLADNI_SKORE = 2.0  # Korekce negativity zpráv – mění se pouze zde
+
 # Výpis aktuálních verzí Pythonu a knihoven
 print("VERZE KNIHOVEN:")
 print("-" * 60)
 print(f"Python:     {sys.version.split()[0]}")
+print(f"IPython: {IPython.__version__}")
 print(f"feedparser: {getattr(feedparser, '__version__', 'není dostupná')}")
 print(f"requests:   {requests.__version__}")
 print(f"pandas:     {pd.__version__}")
 print(f"pyjstat:    {getattr(pyjstat, '__version__', 'není dostupná')}")
-print(f"re:         {re.__version__}")
-print(f"json:       {json.__version__}")
+print(f"re:         {getattr(re, '__version__', 'vestavěný modul')}")
+print(f"json:       {getattr(json, '__version__', 'vestavěný modul')}")
 print("-" * 60 + "\n")
 
 print("=== ANALÝZA NÁLADY VE SPOLEČNOSTI A KURZU ===\n")
 
 # Načtení slovníku z CSV (raw odkaz na GitHubu)
-CSV_SLOVA_ZDROJ = "https://raw.githubusercontent.com/JanPrichzi/Projek_Prehled_Python/main/slova.csv"
 SLOVNIK_SENTIMENTU = nacti_slovnik_z_csv(CSV_SLOVA_ZDROJ, oddelovac=";")
 vypis_slovnik_do_konzole(SLOVNIK_SENTIMENTU)
 
 # A) Zpracování zpráv
-skore_dne, detaily_zprav = stahni_zpravy(vrat_detaily=True, slovnik_podle_vahy=SLOVNIK_SENTIMENTU)
+skore_dne, detaily_zprav = stahni_zpravy(
+    vrat_detaily=True,
+    slovnik_podle_vahy=SLOVNIK_SENTIMENTU,
+    zakladni_skore=ZAKLADNI_SKORE,
+)
 print(f"\nCELKOVÉ SKÓRE ZPRÁV: {skore_dne:g}")
 
 # B) Získání dat z ČSÚ
@@ -81,4 +91,5 @@ vykresli_html_prehled(
     obdobi_duvery=obdobi_csu,
     kurzy_dict=vsechny_kurzy_cnb,
     vychozi_mena="EUR",
+    zakladni_skore=ZAKLADNI_SKORE,
 )
