@@ -4,7 +4,7 @@ Python projekt, který na jednom místě propojuje aktuální mediální sentime
 
 ## Hlavní funkce
 
-* **Analýza sentimentu zpráv (ČT24):** Stahuje 10 nejnovějších hlavních zpráv z RSS ČT24 a hodnotí titulky podle váženého slovníku celých slov a sousloví (váhy `-1`, `-0,5`, `-0,25`, `0,25`, `0,5`, `1`, skóre jednotlivého článku je omezeno na interval `<-1, +1>` a `ZAKLADNI_SKORE = 2.0`  je metodická korekce. Jelikož zpravodajství je přirozeně zaměřené spíše nakrizové a negativní události).
+* **Analýza sentimentu zpráv (ČT24):** Stahuje 10 nejnovějších hlavních zpráv z RSS ČT24 a hodnotí titulky podle váženého slovníku celých slov a sousloví (váhy `-1`, `-0,5`, `-0,25`, `0,25`, `0,5`, `1`, skóre jednotlivého článku je omezeno na interval `<-1, +1>` a `ZAKLADNI_SKORE = 2.0`  je metodická korekce. Jelikož zpravodajství je přirozeně zaměřené spíše na krizové a negativní události).
 * **Ekonomická důvěra (ČSÚ):** Připojuje se k API Českého statistického úřadu (formát JSON-stat) a načítá nejnovější hodnotu *Souhrnného indikátoru důvěry*.
 * **Analýza kurzů (ČNB):** Stahuje denní i historické kurzy všech měn z ČNB, počítá 90denní klouzavý průměr, procentuální odchylku a vyhodnocuje výhodnost pro exportéry a importéry.
 * **Interaktivní přehled:** Vykresluje přehlednou kartu s rozklikávacím detailem hodnocených článků a přepínačem všech měn ČNB.
